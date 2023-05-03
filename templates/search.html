@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <title>Job Scrapper</title>
+    <style>
+    .img {
+        border-radius: 50em; 
+        border: 1px solid black;
+    }
+
+    .logo {
+        max-width: 70px;
+        max-height: 70px;
+        width: 70px;
+        height: auto;
+        object-fit: contain;
+        overflow: hidden;
+    }
+
+    .td {
+        align-items: stretch;
+    }
+
+    td {
+        flex: 1;
+        max-height: 50px;
+    }
+
+    .input-group {
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-name {
+        text-align:left;align-items:center;
+    }
+
+    nav {
+        display: flex;
+        align-items:center;
+        height:80px;
+        background-color:green;
+        position:fixed;
+        top:0
+        ;width:100%;
+        z-index:9999;
+        display: flex;
+    }
+
+    .name {
+        font-size:40px;
+        color:white;
+        font-weight:bold;
+        padding-left:50px;
+    }
+
+    .exprot-button {
+        background-color:green;
+        border-style:none;
+        width:250px;
+        height:70px;
+    }
+    
+    button {
+        background-color: darkgreen;
+        width: 62px;
+        height: 62px;
+        margin-left: 10px;
+        border-radius: 5px;
+    }
+
+    .aa {
+        height: 50px;
+    }
+    </style>
+</head>
+<body>
+    <nav>
+        <a class="name" href="https://job-scrapper.sky123039.repl.co/">Job Scrapper</a>
+        <button class="exprot-button" onclick="window.location.href='/export?keyword={{keyword}}'">
+            <img style="align-items:center;" src="https://cdn-icons-png.flaticon.com/512/4911/4911248.png" width="30px" height="30px">
+        <a style="align-items:center;color:white;">Export to file</a>
+        </button>
+    </nav>
+    <main class="container">
+        <div class="aa"></div>
+        <h1>About {{len_jobs}} Results for "{{keyword}}"</h1>
+        <form action="/search">
+            <div class="input-group">
+                <input type="text" name="keyword" placeholder="Writer one keyword please"> 
+                <button>&rarr;</button>
+            </div>
+        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Position</th>
+                    <th>Company</th>
+                    <th>Location</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for job in jobs %}
+            <tr>
+                <td><img src={{job.logo}} class="logo" width="auto" height="auto"></td>
+                <td>{{job.position}}</td>
+                <td>{{job.company}}</td>
+                <td>{{job.location}}</td>
+                <td><a href="{{job.link}}" target="_blank">Click</a></td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
